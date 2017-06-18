@@ -38,7 +38,6 @@ public class CommandHead implements CommandExecutor {
 						
 						@Override
 						public void run() {
-							p.sendMessage("" + timer);
 							timer --;
 							p.updateInventory();
 							if(timer == 0){
