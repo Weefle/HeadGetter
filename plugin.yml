@@ -1,9 +1,9 @@
 name: HeadGetter
 author: Weefle
-version: 1.0
+version: 1.1
 description: Get player's head easily!
 main: fr.weefle.headgetter.Main
 commands:
-  head:
+  gethead:
     description: Main command to get player's head
-    permission: head.use
+    permission: gethead.use

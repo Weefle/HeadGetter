@@ -13,20 +13,21 @@ public class CommandHead implements CommandExecutor {
 		
 		if (sender instanceof Player){
 			Player p = (Player) sender;
-			if(cmd.getName().equalsIgnoreCase("head")){
+			if(cmd.getName().equalsIgnoreCase("gethead")){
 				if(args.length == 0){
-				p.sendMessage("§4Pas assez d'arguments! §6| §3/head <name>");
+				p.sendMessage("§4Too many arguments! §6| §3/gethead <name> <name> ...");
 				}
-				if(args.length == 1){
+				if(args.length >= 1){
 					HeadAPI h = new HeadAPI();
-					ItemStack i = new ItemStack(h.getHead(args[0]));
+					for(String s : args){
+					ItemStack i = new ItemStack(h.getHead(s));
+					p.updateInventory();
 					p.getInventory().addItem(i);
 					p.updateInventory();
-					p.sendMessage("§2Tu as reçus la tête de " + args[0]);
+					p.sendMessage("§2You received the §6" + s + "§2's head!");
+					}
 				}
-				if(args.length > 1){
-					p.sendMessage("§4Trop d'arguments! §6| §3/head <name>");
-				}
+			
 				}
 			}
 		

@@ -6,7 +6,7 @@ public class Main extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
-		getCommand("head").setExecutor(new CommandHead());
+		getCommand("gethead").setExecutor(new CommandHead());
 		super.onEnable();
 	}
 
