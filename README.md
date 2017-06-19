@@ -1,2 +1,2 @@
 # HeadGetter
-Get players's heads easily!
+Get multiple players's heads easily!
