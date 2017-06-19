@@ -22,19 +22,14 @@ public class CommandHead implements CommandExecutor {
 					HeadAPI h = new HeadAPI();
 					for(String s : args){
 					ItemStack i = new ItemStack(h.getHead(s));
-					try {
-						TimeUnit.MILLISECONDS.sleep(20);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					p.getInventory().addItem(i);
+						p.getInventory().addItem(i);
+						p.sendMessage("§2You received the §6" + s + "§2's head!");
 						try {
 							TimeUnit.SECONDS.sleep(1);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
 						p.updateInventory();
-					p.sendMessage("§2You received the §6" + s + "§2's head!");
 					}
 				}
 			
