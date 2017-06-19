@@ -1,6 +1,6 @@
 package fr.weefle.headgetter;
 
-import org.bukkit.Bukkit;
+import java.util.concurrent.TimeUnit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -8,18 +8,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class CommandHead implements CommandExecutor {
-	
-	public int task;
-	public int timer;
-	private Main m;
-	public CommandHead(Main main) {
-		this.m = main;
-	}
-
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
-		timer = args.length;
 		
 		if (sender instanceof Player){
 			Player p = (Player) sender;
@@ -31,21 +22,20 @@ public class CommandHead implements CommandExecutor {
 					HeadAPI h = new HeadAPI();
 					for(String s : args){
 					ItemStack i = new ItemStack(h.getHead(s));
+					try {
+						TimeUnit.MILLISECONDS.sleep(20);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 					p.getInventory().addItem(i);
+						try {
+							TimeUnit.SECONDS.sleep(1);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						p.updateInventory();
 					p.sendMessage("§2You received the §6" + s + "§2's head!");
 					}
-					task = Bukkit.getScheduler().scheduleSyncRepeatingTask(m, new Runnable() {
-						
-						@Override
-						public void run() {
-							timer --;
-							p.updateInventory();
-							if(timer == 0){
-								Bukkit.getScheduler().cancelTask(task);
-								p.updateInventory();
-							}	
-						}
-					}, 20, 20);
 				}
 			
 				}
