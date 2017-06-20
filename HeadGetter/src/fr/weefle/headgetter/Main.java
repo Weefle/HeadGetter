@@ -10,7 +10,7 @@ public class Main extends JavaPlugin {
 	public void onEnable() {
 		getCommand("gethead").setExecutor(new CommandHead());
 		try {
-			new SpigotUpdater(this, 42527);
+			new Updater(this, 42527);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

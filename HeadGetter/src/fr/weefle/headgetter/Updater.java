@@ -13,7 +13,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class SpigotUpdater
+public class Updater
   extends Thread
 {
   private final Plugin plugin;
@@ -22,13 +22,13 @@ public class SpigotUpdater
   private boolean enabled = true;
   private URL url;
   
-  public SpigotUpdater(Plugin plugin, int resourceID)
+  public Updater(Plugin plugin, int resourceID)
     throws IOException
   {
     this(plugin, resourceID, true);
   }
   
-  public SpigotUpdater(Plugin plugin, int resourceID, boolean log)
+  public Updater(Plugin plugin, int resourceID, boolean log)
     throws IOException
   {
     if (plugin == null) {
