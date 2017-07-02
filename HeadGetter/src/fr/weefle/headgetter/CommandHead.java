@@ -1,6 +1,6 @@
 package fr.weefle.headgetter;
 
-import java.util.concurrent.TimeUnit;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -8,6 +8,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class CommandHead implements CommandExecutor {
+	
+	private Main main;
+	
+	public CommandHead(Main main) {
+		this.main = main;
+	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
@@ -24,11 +30,8 @@ public class CommandHead implements CommandExecutor {
 					ItemStack i = new ItemStack(h.getHead(s));
 						p.getInventory().addItem(i);
 						p.sendMessage("§2You received the §6" + s + "§2's head!");
-						try {
-							TimeUnit.SECONDS.sleep(1);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+						Bukkit.getScheduler().scheduleSyncDelayedTask(main, () -> {
+						}, 20);
 						p.updateInventory();
 					}
 				}

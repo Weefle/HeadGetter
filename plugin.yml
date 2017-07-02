@@ -1,6 +1,6 @@
 name: HeadGetter
 author: Weefle
-version: 1.5
+version: 1.6
 description: Get player's head easily!
 main: fr.weefle.headgetter.Main
 commands:

@@ -8,7 +8,7 @@ public class Main extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
-		getCommand("gethead").setExecutor(new CommandHead());
+		getCommand("gethead").setExecutor(new CommandHead(this));
 		try {
 			new Updater(this, 42527);
 		} catch (IOException e) {
