@@ -10,6 +10,10 @@ import org.bukkit.inventory.ItemStack;
 public class CommandHead implements CommandExecutor {
 	
 	private Main main;
+	private Player p;
+	private int task;
+	private int timer;
+	private String[] args;
 	
 	public CommandHead(Main main) {
 		this.main = main;
@@ -19,7 +23,7 @@ public class CommandHead implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 		
 		if (sender instanceof Player){
-			Player p = (Player) sender;
+			p = (Player) sender;
 			if(cmd.getName().equalsIgnoreCase("gethead")){
 				if(args.length == 0){
 				p.sendMessage("§4Too many arguments! §6| §3/gethead <name> <name> ...");
@@ -30,16 +34,27 @@ public class CommandHead implements CommandExecutor {
 					ItemStack i = new ItemStack(h.getHead(s));
 						p.getInventory().addItem(i);
 						p.sendMessage("§2You received the §6" + s + "§2's head!");
-						Bukkit.getScheduler().scheduleSyncDelayedTask(main, () -> {
-						}, 20);
-						p.updateInventory();
 					}
+					this.args = args;
+					refresh();
 				}
 			
 				}
 			}
 		
 		return true;
+	}
+	
+	public void refresh() {
+		timer = args.length;
+		task = Bukkit.getScheduler().scheduleSyncRepeatingTask(main, () -> {
+			timer--;
+			p.updateInventory();
+			if(timer == 0) {
+				Bukkit.getScheduler().cancelTask(task);
+				p.updateInventory();
+			}
+			}, 20L, 20L);
 	}
 
 }
