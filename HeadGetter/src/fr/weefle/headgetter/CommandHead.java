@@ -13,7 +13,6 @@ public class CommandHead implements CommandExecutor {
 	private Player p;
 	private int task;
 	private int timer;
-	private String[] args;
 	
 	public CommandHead(Main main) {
 		this.main = main;
@@ -35,26 +34,21 @@ public class CommandHead implements CommandExecutor {
 						p.getInventory().addItem(i);
 						p.sendMessage("§2You received the §6" + s + "§2's head!");
 					}
-					this.args = args;
-					refresh();
+					timer = args.length;
+					task = Bukkit.getScheduler().scheduleSyncRepeatingTask(main, () -> {
+						timer--;
+						p.updateInventory();
+						if(timer == 0) {
+							Bukkit.getScheduler().cancelTask(task);
+							p.updateInventory();
+						}
+						}, 20L, 20L);
 				}
 			
 				}
 			}
 		
 		return true;
-	}
-	
-	public void refresh() {
-		timer = args.length;
-		task = Bukkit.getScheduler().scheduleSyncRepeatingTask(main, () -> {
-			timer--;
-			p.updateInventory();
-			if(timer == 0) {
-				Bukkit.getScheduler().cancelTask(task);
-				p.updateInventory();
-			}
-			}, 20L, 20L);
 	}
 
 }
