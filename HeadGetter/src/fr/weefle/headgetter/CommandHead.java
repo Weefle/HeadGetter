@@ -13,6 +13,7 @@ public class CommandHead implements CommandExecutor {
 	private Player p;
 	private int task;
 	private int timer;
+	private boolean b = true;
 	
 	public CommandHead(Main main) {
 		this.main = main;
@@ -28,7 +29,9 @@ public class CommandHead implements CommandExecutor {
 				p.sendMessage("§4Too many arguments! §6| §3/gethead <name> <name> ...");
 				}
 				if(args.length >= 1){
-					HeadAPI h = new HeadAPI();
+					if(b == true){
+						b = false;
+						HeadAPI h = new HeadAPI();
 					for(String s : args){
 					ItemStack i = new ItemStack(h.getHead(s));
 						p.getInventory().addItem(i);
@@ -40,9 +43,13 @@ public class CommandHead implements CommandExecutor {
 						p.updateInventory();
 						if(timer == 0) {
 							Bukkit.getScheduler().cancelTask(task);
+							b = true;
 							p.updateInventory();
 						}
 						}, 20L, 20L);
+					}else if(b == false) {
+						p.sendMessage("§4There is already a task, wait until it ends!");
+					}
 				}
 			
 				}
