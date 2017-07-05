@@ -16,7 +16,7 @@ public class Updater
   extends Thread
 {
   private int id;
-  public boolean update = false;
+  public boolean update;
   private boolean log;
   private boolean enabled = true;
   public boolean enabledingame = true;

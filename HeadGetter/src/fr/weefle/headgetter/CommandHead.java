@@ -9,14 +9,13 @@ import org.bukkit.inventory.ItemStack;
 
 public class CommandHead implements CommandExecutor {
 	
-	private Main main;
+	private Main m;
 	private Player p;
 	private int task;
 	private int timer;
-	private boolean b = true;
 	
-	public CommandHead(Main main) {
-		this.main = main;
+	public CommandHead(Main m) {
+		this.m = m;
 	}
 
 	@Override
@@ -29,8 +28,8 @@ public class CommandHead implements CommandExecutor {
 				p.sendMessage("§4Too many arguments! §6| §3/gethead <name> <name> ...");
 				}
 				if(args.length >= 1){
-					if(b == true){
-						b = false;
+					if(m.b == true){
+						m.b = false;
 						HeadAPI h = new HeadAPI();
 					for(String s : args){
 					ItemStack i = new ItemStack(h.getHead(s));
@@ -38,16 +37,16 @@ public class CommandHead implements CommandExecutor {
 						p.sendMessage("§2You received the §6" + s + "§2's head!");
 					}
 					timer = args.length;
-					task = Bukkit.getScheduler().scheduleSyncRepeatingTask(main, () -> {
+					task = Bukkit.getScheduler().scheduleSyncRepeatingTask(m, () -> {
 						timer--;
 						p.updateInventory();
 						if(timer == 0) {
 							Bukkit.getScheduler().cancelTask(task);
-							b = true;
+							m.b = true;
 							p.updateInventory();
 						}
 						}, 20L, 20L);
-					}else if(b == false) {
+					}else if(m.b == false) {
 						p.sendMessage("§4There is already a task, wait until it ends!");
 					}
 				}

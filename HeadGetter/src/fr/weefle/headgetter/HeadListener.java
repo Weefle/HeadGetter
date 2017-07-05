@@ -15,9 +15,9 @@ public class HeadListener implements Listener {
 	public void onJoin(PlayerJoinEvent e) {
 		
 		if(m.u.enabledingame) {
-			if(m.u.update = true) {
+			if(m.u.update == true) {
 			e.getPlayer().sendMessage("§6[§2Updater§6] §3Look at the console, there is an update for HeadGetter!");
-			}else if(m.u.update = false){
+			}else{
 				e.getPlayer().sendMessage("§6[§2Updater§6] §3There isn't update for HeadGetter!");
 			}
 		}
