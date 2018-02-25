@@ -16,10 +16,10 @@ public class Updater
   extends Thread
 {
   private int id;
-  public boolean update;
-  private boolean log;
+  public static boolean update = false;
+  private boolean log = false;
   private boolean enabled = true;
-  public boolean enabledingame = true;
+  public static boolean enabledingame = true;
   private URL url;
   private Main m;
   public Updater(Main m) {
@@ -72,7 +72,7 @@ public class Updater
       return;
     }
     this.enabled = yamlConfig.getBoolean("enabled");
-    this.enabledingame = yamlConfig.getBoolean("enabledingame");
+    enabledingame = yamlConfig.getBoolean("enabledingame");
     
     super.start();
   }

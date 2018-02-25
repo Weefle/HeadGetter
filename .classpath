@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="HeadGetter/src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Weefle/Downloads/spigot-1.12.1-R0.1-SNAPSHOT-b1395.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="C:/Users/Weefle/Documents/mc/spigot-1.12.2-R0.1-SNAPSHOT-b1595.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
