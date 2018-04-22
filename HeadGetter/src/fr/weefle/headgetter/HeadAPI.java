@@ -7,6 +7,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 public class HeadAPI {
 	
+	@SuppressWarnings("deprecation")
 	public ItemStack getHead(String p){
 		
 		ItemStack i = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
